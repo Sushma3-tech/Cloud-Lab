@@ -1,7 +1,17 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - echo "No ECR push configured (demo build only)"
+
   build:
     commands:
       - echo Build started
       - docker build -t my-app .
+
+  post_build:
+    commands:
+      - echo Build completed successfully
